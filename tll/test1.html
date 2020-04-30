@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>$(document).ready(function () {     
+	$.ajax({	    
+		url : "https://lab.isaaclin.cn/nCoV/api/overall?latest=1",
+		type : "get",
+		dataType : 'json',		
+		async : true,	
+		success : function(data){	
+			alert(JSON.stringify(data));		},		
+			error:function(){			
+				alert("数据请求失败");		}	})})
+				</script>
+</head>
+<body>
+<p>
+现存确诊人数: <span id="currentConfirmedCount"></span><br />
+（较昨日增加数量）: <span id="currentConfirmedCount"></span><br />
+累计确诊人数: <span id="confirmedCount"></span><br />
+（较昨日增加数量）: <span id="confirmedIncr"></span><br />
+疑似感染人数: <span id="suspectedCount"></span><br />
+（较昨日增加数量）: <span id="suspectedIncr"></span><br />
+治愈人数: <span id="curedCount"></span><br />
+（较昨日增加数量）: <span id="curedIncr"></span><br />
+死亡人数:<span id="deadCount"></span><br />
+（较昨日增加数量）:<span id="deadIncr"></span><br />
+重症病例人数:<span id="seriousCount"></span><br />
+（较昨日增加数量）:<span id="seriousIncr"></span><br />
+数据最后变动时间：<span id="updateTime"></span><br />
+</p>
+<script type="text/javascript">
+var JSONObject= {
+"currentConfirmedCount"
+"currentConfirmedIncr"
+"confirmedCount"
+"confirmedIncr"
+"suspectedCount"
+"suspectedIncr"
+"curedCount"
+"curedIncr"
+"deadCount"
+"deadIncr"
+"seriousCount"
+"seriousIncr"
+"updateTime"
+document.getElementById("currentConfirmedCount(Incr)").innerHTML=JSONObject.currentConfirmedCount(Incr)
+document.getElementById("confirmedCount(Incr)").innerHTML=JSONObject.confirmedCount(Incr)
+document.getElementById("suspectedCount(Incr)").innerHTML=JSONObject.suspectedCount(Incr)
+document.getElementById("curedCount(Incr)").innerHTML=JSONObject.curedCount(Incr)
+document.getElementById("deadCount(Incr)").innerHTML=JSONObject.deadCount(Incr)
+document.getElementById("seriousCount(Incr)").innerHTML=JSONObject.seriousCount(Incr)
+document.getElementById("updateTime").innerHTML=JSONObject.updateTime
+</script>
+
+</body>
+</html>
