@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<title>实时更新：新型冠状病毒肺炎疫情地图</title>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<script src="main.js"></script>
+<script>
+  
+    let url = "https://lab.isaaclin.cn/nCoV/api/overall";
+    
+    $.getJSON(url,function(data,status){
+
+        let res = data["results"][0];
+
+        $("#confirmedCount").text(res["confirmedCount"]);
+        
+        $("#currentConfirmedCount").text(res["currentConfirmedCount"]);
+        
+        $("#suspectedCount").text(res["suspectedCount"]);
+
+        $("#curedCount").text(res["curedCount"]);
+   
+        $("#deadCount").text(res["deadCount"]);
+        
+        $("#seriousCount").text(res["seriousCount"]);
+       
+        $("#updateTime").text(timestampToTime(res["updateTime"],1)); 
+     
+    }).fail(function () {
+    	
+});
+    
+    function timestampToTime(timestamp,s,time = false) {
+
+        var date = new Date(timestamp * s);
+
+        Y = date.getFullYear() + '-';
+
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+
+        D = date.getDate() + ' ';
+
+        h = date.getHours();
+
+        m = ':' + (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes());
+
+        s = ':' + (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+
+        if(time)
+
+            return h+m;
+
+        else
+
+            return Y+M+D+h+m+s;
+    }
+
+</script>
+
+<style >
+       #root, #viewport, .mola-window{
+       background-color:#10aeb5;
+       }
+       #viewport{       
+        width:100%;
+       }
+       #root, #viewport, .mola-window{
+          background-color:#10aeb5;
+       }
+       .mola-window{
+          overflow-x:hidden;
+          overflow-y:auto;
+          display:block;
+       }
+       .Virus_1-1-255_38wHdk{
+          min-height:31.25rem;
+          max-width:768px;
+          margin:0 auto;
+          background-color:#10aeb5;
+          overflow:hidden;
+          box-sizing:border-box;
+          line-height:normal;
+          display:block;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u{
+          background-size:695px 189px;
+          background-position:50% 50%;
+          background-repeat:no-repeat;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u{
+          color:#fff;
+          position:relative;
+          padding:0;
+          height:190px;
+          margin-bottom:-.625rem;
+          background-color:#10aeb5;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u .Virus_1-1-255_2SChD4{
+          margin-top:30px;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u .Virus_1-1-255_2SChD4{
+          display:inline-block;
+          margin-left:17px;
+          font-size:.875rem;
+          color:#c4faff;
+          letter-spacing:.125rem;         
+       }
+       h3 {
+         margin-block-start: 1em;
+         margin-block-end: 1em;
+         margin-inline-start: 0px;
+         margin-inline-end: 0px;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u .Virus_1-1-255_1pqQwD{
+         margin-top:10px;
+         font-size:1.8rem;
+         height:2rem;
+         line-height:2rem;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u .Virus_1-1-255_1pqQwD{
+          position:relative;
+          padding-left:17px;
+          max-width:100%;
+          white-space:nowrap;
+          font-weight:700;
+          color:#fff;
+       }
+       h1{
+         display: block;
+         margin-block-start: 0.67em;
+         margin-block-end: 0.67em;
+         margin-inline-start: 0px;
+         margin-inline-end: 0px;
+       }
+        .Virus_1-1-255_38wHdk .Virus_1-1-255_4-qH5u .Virus_1-1-255_1bxSd_ {
+         display: inline-block;
+         margin-top: .125rem;
+         margin-left: 17px;
+         height: 1.4375rem;
+         line-height: 1.4375rem;
+         padding: 0 .625rem;
+         border-radius: .71875rem;
+        font-size: .6875rem;
+      }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ{
+         background-color: #fff;
+         position: relative;
+         border-radius: .625rem;
+         margin: -.5rem 0 1.5rem;
+         padding: .917rem 1.0625rem 1.875rem;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_OraMqa{
+         height: 2.1rem;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_36YNjR{
+         display: flex;
+         justify-content: space-around;
+         border-bottom: 1px solid #f5f6f7;
+         margin: auto -.9375rem .75rem;
+         z-index: 99990000;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_36YNjR .Virus_1-1-255_2OB9bJ{
+              display: flex;
+              justify-content: space-around;
+              width: 100%;
+              padding: 0 1.0625rem;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_36YNjR .Virus_1-1-255_2OB9bJ .Virus_1-1-255_19NjyF{
+                font-weight: 700;
+                color: #10aeb5;
+                border-bottom: 3px solid #10aeb5;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_36YNjR .Virus_1-1-255_2OB9bJ a{
+                   position: relative;
+                   padding-bottom: .475rem;
+       }
+       a {
+          text-decoration: none;
+       }
+       .Virus_1-1-255_2dO8Hx {
+          margin-bottom: 1.875rem;
+       }
+       .Virus_1-1-255_3U87rg {
+          font-size: 1rem;
+          height: 1rem;
+          line-height: 1rem;
+          font-weight: 700;
+          vertical-align: middle;
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+          margin-bottom: .625rem;
+       }
+       .VirusSummarySix_1-1-255_3U50rt{
+             display: flex;
+             flex-wrap: nowrap;
+       }
+       .VirusSummarySix_1-1-255_3U50rt .VirusSummarySix_1-1-255_3wCKWi{
+                -webkit-box-flex: 1;
+               flex: 1 1 25%;
+               text-align: center;
+       }
+       .VirusSummarySix_1-1-255_1KtzV-{
+                 margin-top: 1.25rem;
+       }
+       .VirusSummarySix_1-1-255_3U50rt{
+                 display: flex;
+                 flex-wrap: nowrap;
+       }
+       .VirusSummarySix_1-1-255_3Y7tso{
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            margin: .9375rem 0;
+            padding: 0 .625rem 0 .9375rem;
+            height: 2.3333rem;
+            background: #fff;
+            border: .0625rem solid #f5f5f5;
+            box-shadow: 0 0.2083rem 0.3125rem 0 hsla(0,0%,96%,.5);
+            border-radius: 5px;
+       }
+       .VirusSummarySix_1-1-255_3Y7tso .VirusSummarySix_1-1-255_1jV1Z5 {
+            display: inline-block;
+            width: 1.625rem;
+            height: 1rem;
+            background-image: url(//mms-res.cdn.bcebos.com/mms-res/voicefe/captain/mola/Virus/1.1.255/assets/trumpet.985bf93.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+       }
+       .VirusSummarySix_1-1-255_3U50rt .VirusSummarySix_1-1-255_3wCKWi {
+          -webkit-box-flex: 1;
+          flex: 1 1 25%;
+          text-align: center;
+       }
+       .VirusSummarySix_1-1-255_ZRHUKw {
+         margin-top: 1.25rem;
+         margin-bottom: 1.25rem;
+       }
+       .Virus_1-1-255_2W0UdW {
+          background: #f8f9fa;
+          padding: 1.25rem 1.0625rem 0;
+          margin: 0 -1.0625rem;
+       }
+       .Virus_1-1-255_3W7bs_ {
+           height: 2.5rem;
+           box-sizing: border-box;
+           padding: 2px;
+           background: #e3e6eb;
+           border-radius: 6px;
+       }
+       .Virus_1-1-255_3Bck-y+.Virus_1-1-255_1KG-A3 {
+          box-sizing: border-box;
+          height: 100%;
+          outline: 0;
+          display: block;
+          position: relative;
+          cursor: pointer;
+          user-select: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          transition: all .4s ease;
+       }
+       .Virus_1-1-255_LFqt7D {
+         font-size: .75rem;
+         color: #999;
+         letter-spacing: 0;
+         text-align: center;
+         line-height: .75rem;
+         margin-top: .9375rem;
+       }
+       .Virus_1-1-255_3hsZcj {
+           position: relative;
+       }
+       .VirusTrend_1-1-255_3XOh7y {
+          padding: 0 .375rem 0 .625rem;
+          border: 1px solid #eee;
+          border-radius: .3125rem;
+       }
+       .Virus_1-1-255_38wHdk .Virus_1-1-255_LIVfXZ .Virus_1-1-255_26pDWa {
+           margin-top: 2.875rem;
+           font-family: PingFangSC-Medium;
+           font-size: 1rem;
+           color: #000;
+           line-height: 1rem;
+        }
+
+         .VirusSummary_1-1-255_popavK {
+            position: relative;
+            margin-bottom: .25rem;
+            border-radius: .31rem;
+            white-space: nowrap;
+            font-size: .938rem;
+            color: #333;
+         }
+         .VirusSummary_1-1-255_popavK .VirusSummary_1-1-255_26c8Iu {
+            table-layout: fixed;
+            width: 100%;
+            padding: .9375rem 0;
+          }
+          table {
+            border-collapse: separate;
+            border-spacing: 0;
+            vertical-align: middle;
+          }
+          .VirusSummary_1-1-255_popavK .VirusSummary_1-1-255_Af8Lb3 {
+             font-size: .9375rem;
+             height: .9375rem;
+             line-height: .9375rem;
+             color: #333;
+           }
+           .Virus_1-1-255_2W0UdW {
+              background: #f8f9fa;
+              padding: 1.25rem 1.0625rem 0;
+              margin: 0 -1.0625rem;
+           }
+           .Common_1-1-255_2X5CGD {
+              display: flex;
+              -webkit-box-orient: horizontal;
+              -webkit-box-direction: normal;
+              flex-direction: row;
+             -webkit-box-pack: justify;
+             justify-content: space-between;
+             -webkit-box-align: center;
+             align-items: center;
+             flex-wrap: wrap;
+             margin-top: 2.5rem;
+          }
+          .Common_1-1-255_2X5CGD .Common_1-1-255_2l00iM {
+            font-size: 1rem;
+            font-weight: 700;
+            vertical-align: middle;
+          }
+         .module-content{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            background-color: #f5f6f7;
+            border-radius: .3125rem;
+            color: #555;
+            width: 80px;
+            position: relative;
+            height: 28px;
+            font-size: .875rem;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-active{
+            background-color: #00bec7;
+            color: #fff;
+            position: relative;
+            margin-right: .5rem;
+        }
+
+        .btn-active:after {
+            bottom: -12px;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-top-color: #00bec7;
+            border-width: 6px;
+            margin-left: -6px;
+        }
+        .item{
+            padding: 0;
+            margin: 0;
+            border: 0;
+            outline: 0;
+            font-weight: inherit;
+            font-style: inherit;
+            font-family: inherit;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+        .decorate{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #0faeb5;
+            border-radius: .375rem;
+            border-color: #cfeff0;
+            border: .1875rem solid #cfeff0
+
+        }
+        .item-time{
+            display: inline-block;
+            padding-left: 5px;
+            color: #999;
+            font-size: .875rem;
+            line-height: .875rem;
+        }
+        .item-content{
+            width:720px;
+            height: 40px;
+            margin-left: 4px;
+            padding: 10px;
+            border-left: .121rem solid #c6cfd7;
+        }
+        .item-content-text{
+            background: #f5f6f7;
+            height: 100%;
+            padding-left: 5px;
+            padding-top: 5px;
+            box-sizing:border-box;
+        }
+        #packupbtn{
+            text-align: center;
+            font-size: .938rem;
+            line-height: .938rem;
+            color: #555;
+            margin-top: .25rem;
+        }
+        #packupbtn:after {
+            position: relative;
+            top: .1rem;
+            display: inline-block;
+            width: .938rem;
+            height: .938rem;
+            background: url(http:mms-res.cdn.bcebos.com/mms-res/voicefe/captain/mola/Virus/1.1.255/assets/more.b2bd431.svg);
+            content: "";
+            background-size: 6px 11px;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            margin-left: .469rem;
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(-90deg);
+        }
+        #expandbtn{
+            text-align: center;
+            font-size: .938rem;
+            line-height: .938rem;
+            color: #555;
+            margin-top: .25rem;
+        }
+        #expandbtn:after {
+            position: relative;
+            top: .1rem;
+            display: inline-block;
+            width: .938rem;
+            height: .938rem;
+            background: url(http:mms-res.cdn.bcebos.com/mms-res/voicefe/captain/mola/Virus/1.1.255/assets/more.b2bd431.svg);
+            content: "";
+            background-size: 6px 11px;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            margin-left: .469rem;
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+</style>
+
+
+</head>
+<body onload=loadXMLDoc()>
+    <div id="wx_pic" style="margin:0 auto;display:none;">
+        <img src="https://mms-res.cdn.bcebos.com/mms-res/voicefe/captain/images/ecc4e1b0a447b66941edd59b05c2a01a.png?size=96*96" alt="实时更新：新型冠状病毒肺炎疫情地图">
+    </div>
+    <div id="viewport" class="result-op">
+         <div id="main" style="display:block;">
+             <div class="mola-window">
+                    <div class="Virus_1-1-255_38wHdk">                       
+                          <header class="Virus_1-1-255_4-qH5u">                                
+                                <h3 class="Virus_1-1-255_2SChD4">新型冠状病毒肺炎</h3>
+                                <h1 class="Virus_1-1-255_1pqQwD" data-text="疫情实时大数据报告">疫情实时大数据报告</h1>
+                                <div class="Virus_1-1-255_1bxSd_">截至 <span id="updateTime"></span></div>
+                          </header>
+                          <section class="Virus_1-1-255_LIVfXZ">
+                                <div class="Virus_1-1-255_OraMqa" style="display:block;">
+                                      <div id="tab" class="Virus_1-1-255_36YNjR">
+                                           <div class="Virus_1-1-255_2OB9bJ">
+                                                 <a data-click="{&quot;act&quot;:&quot;tabname_click_0&quot;}" class="Virus_1-1-255_19NjyF"><span></span>国内疫情</a>
+                                                 <a data-click="{&quot;act&quot;:&quot;tabname_click_1&quot;}" class=""><span></span>国外疫情</a>
+                                                 <a data-click="{&quot;act&quot;:&quot;tabname_click_2&quot;}" class=""><span></span>实时播报</a>
+                                           </div>
+                                       </div>    
+                                </div>           
+                                <div id="ptab-0" style="display:block;">
+                                      <div class="VirusSummarySix_1-1-255_ZRHUKw" style="display:block;">
+                                        
+                                        <div class="Virus_1-1-255_2dO8Hx" style="display:block;">
+                                                       <div class="Virus_1-1-255_3U87rg" style="display:block;"><p>国内疫情</p></div>
+                                        </div>
+                                        <div class="VirusSummarySix_1-1-255_3U50rt" >
+                                                     <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_123ZxM" style="display:block;color:coral">现有确诊：<span id="currentConfirmedCount"></span></div>
+                                                     <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_l6KpVT" style="display:block;color:crimson"> 累计确诊：<span id="confirmedCount"></span></div>
+                                                     <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_2VbXew" style="display:block;color:cornflowerblue"> 境外输入确诊：<span id="suspectedCount"></span></div>
+                                                     
+                                        </div>
+                                        <div class="VirusSummarySix_1-1-255_3U50rt VirusSummarySix_1-1-255_1KtzV-" >
+                                                  <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_c39Mfc" style="display:block;color:turquoise">治愈：<span id="curedCount"></span></div>  
+                                                  <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_c39Mfc" style="display:block;color:dimgray">死亡：<span id="deadCount"></span></div>
+                                                  <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_c39Mfc" style="display:block;color:coral"> 无症状：<span id="seriousCount"></span></div>
+                                                  
+                                        </div>
+                                      </div>  
+                                      <div class="Virus_1-1-255_2W0UdW" style="display:block;">                                                                               
+                                                   <div style="margin-left: 50px; margin-top: 20px;">
+                                                      <iframe width="652.5px" height="500px" src="map_other.html" frameborder="no"  marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                                                   </div>
+                                       </div>                                     
+                                      <div>
+                                                 <div style="margin-left: 70px; margin-top: 50px;">
+                                                   <iframe width="652.5px" height="520px" src="calendar_other.html" frameborder="no"  marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                                       </div></div>
+                                      <div> 
+                                             <div style="margin-left: 50px; margin-top: 20px;">
+                                                   <iframe width="652.5px" height="520px" src="other.html" frameborder="no"  marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                                             </div>
+                                          <div style="display:block;">
+                                               <div class="Virus_1-1-255_26pDWa"><p>国内各地区疫情数据统计</p> </div>
+                                               <div id="myGrid" style="height: 80vh; width:740px;" class="ag-theme-alpine"></div>             
+                                          </div>
+                                      </div>
+                                </div>
+                                <div>
+                                 <div class="Virus_1-1-255_2dO8Hx" style="display:block;">
+                                                       <div class="Virus_1-1-255_3U87rg" style="display:block;"><p>国外疫情</p></div>
+                                                          <button onclick="myFunction()"></button>
+                                                         <script src="myScript.js"></script>
+                                        </div>
+                                        <div class="VirusSummarySix_1-1-255_3U50rt" >
+                                                     <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_123ZxM" style="display:block;color:coral">现有确诊：<span id="gcurrentConfirmedCount"></span></div>
+                                                     <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_l6KpVT" style="display:block;color:crimson"> 累计确诊： <span id="gconfirmedCount"></span></div>
+                                      
+                                                     
+                                        </div>
+                                        <div class="VirusSummarySix_1-1-255_3U50rt VirusSummarySix_1-1-255_1KtzV-" >
+                                                  <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_c39Mfc" style="display:block;color:turquoise">治愈：<span id="gcuredCount"></span></div>  
+                                                  <div class="VirusSummarySix_1-1-255_3wCKWi VirusSummarySix_1-1-255_c39Mfc" style="display:block;color:dimgray">死亡：<span id="gdeadCount"></span></div>
+                                                  
+                                                  
+                                        </div>
+                                      </div>  
+                                     <div id="ptab-1" style="display:block;height:50px;">
+                                          <div class="Common_1-1-255_2X5CGD"><span class="Common_1-1-255_2l00iM">实时播报</span></div>
+                                   <div style="margin-top: 1px">  
+            </div>
+        </div>
+        <div class="module-content" id="content">
+        </div>
+    </div>
+    <script>
+        loadDataView();
+        //初始化数据
+        function initData() {
+            var data=new Array();
+            var obj1=new Object();
+            obj1['time']='06月18日  06:50';
+            obj1['text']='「战疫全时区」美国新增确诊病例超2.8万例 累计确诊近216万例';
+            data.push(obj1);
+
+            var obj2=new Object();
+            obj2['time']='06月18日  06:47';
+            obj2['text']='一文读懂全球疫情：全球累计确诊逾831万 印度再向亚投行借7.5亿美元抗疫贷款';
+            data.push(obj2);
+
+            var obj3=new Object();
+            obj3['time']='06月18日  06:37';
+            obj3['text']='「战疫全时区」巴西新增确诊病例超3.2万例 累计确诊逾95万例';
+            data.push(obj3);
+
+            var obj4=new Object();
+            obj4['time']='06月17日 16:20';
+            obj4['text']='北京：已对35.6万重点人员进行核酸检测';
+            data.push(obj4);
+        
+
+            var obj5=new Object();
+            obj5['time']='06月17日  12:31';
+            obj5['text']='洪都拉斯总统胡安·埃尔南德斯被确诊感染新冠病毒';
+            data.push(obj5);
+
+            var obj6=new Object();
+            obj6['time']='06月17日 11:59';
+            obj6['text']='北京市教委回应中高考后续安排：明确高初三毕业生在考试之前居家十四天';
+            data.push(obj6);
+
+            var obj7=new Object();
+            obj7['time']='06月17日 11:48';
+            obj7['text']='北京全面停止春季学期在京高校学生返校';
+            data.push(obj7);
+
+            var obj8=new Object();
+            obj8['time']='06月17日 11:42';
+            obj8['text']='北京今天中小幼各阶段全部实现静校，学生居家在线学习';
+            data.push(obj8);
+
+            var obj9=new Object();
+            obj9['time']='06月17日 09:10';
+            obj9['text']='浙江、河北、四川与辽宁4省出现北京确诊关联病例';
+            data.push(obj9);
+
+            var obj10=new Object();
+            obj10['time']='06月17日 09:08';
+            obj10['text']='河北新增确诊1例，无症状感染者3例，与北京有关联';
+            data.push(obj10);
+
+            var obj11=new Object();
+            obj11['time']='06月17日 08:47';
+            obj11['text']='31省份新增确诊44例，其中本土33例（北京31例 河北1例 浙江1例）';
+            data.push(obj11);
+
+            var obj12=new Object();
+            obj12['time']='06月17日 08:28';
+            obj12['text']='北京昨日新增报告31例新冠肺炎确诊病例';
+            data.push(obj12);
+
+            var obj13=new Object();
+            obj13['time']='06月17日 07:48';
+            obj13['text']='北京：对所有小区全面实行严格封闭式管理';
+            data.push(obj13);
+
+            return data;
+        }
+
+        //加载数据到视图
+        function loadDataView() {
+            var data=initData();
+            var content=$('#content');
+            var html='';
+
+            for(var i=0;i<data.length;i++){
+                if(data.length>9){
+                    if(i<9){
+                        html+= '<div class="item">';
+                        html+= '<div class="decorate"></div>';
+                        html+= '<div class="item-time">'+data[i].time+'</div>';
+                        html+= ' <div class="item-content">' +
+                            '                    <div class="item-content-text">' +
+                            '                        '+data[i].text+'' +
+                            '                    </div>' +
+                            '                </div>' +
+                            '                </div>';
+                    }else if(i==9){
+                        html+= '<div class="item">';
+                        html+= '<div class="decorate"></div>';
+                        html+= '<div class="item-time">'+data[i].time+'</div>';
+                        html+= ' <div class="item-content">\n' +
+                            '                    <div class="item-content-text">\n' +
+                            '                        '+data[i].text+'\n' +
+                            '                    </div>' +
+                            '      <div id="expandbtn" onclick="expand()">'+
+                            '   展开全部'+
+                            '   </div>'+
+                            '                </div>' +
+                            '                </div>';
+                    }else{
+                        html+= '<div class="item" style="display: none">';
+                        html+= '<div class="decorate"></div>';
+                        html+= '<div class="item-time">'+data[i].time+'</div>';
+                        html+= ' <div class="item-content">\n' +
+                            '                    <div class="item-content-text">\n' +
+                            '                        '+data[i].text+'\n' +
+                            '                    </div>\n' +
+                            '                </div>' +
+                            '                </div>';
+                    }
+                }else{
+                    html+= '<div class="item">';
+                    html+= '<div class="decorate"></div>';
+                    html+= '<div class="item-time">'+data[i].time+'</div>';
+                    html+= ' <div class="item-content">\n' +
+                        '                    <div class="item-content-text">\n' +
+                        '                        '+data[i].text+'\n' +
+                        '                    </div>\n' +
+                        '                </div>' +
+                        '                </div>';
+                }
+            }
+            content.html(html);
+        }
+        
+        function packup() {
+            var packupbtn=$('#packupbtn');
+            packupbtn.remove();
+
+            var itemlist=$('.item:visible');
+            itemlist.each(function (index,value) {
+               if(index>9){
+                   itemlist.eq(index).css("display","none");
+               }
+            });
+
+            var lastitemcontent=$('.item:visible:last .item-content');
+            var child='<div id="expandbtn" onclick="expand()">\n' +
+                '                        展开全部\n' +
+                '                    </div>';
+            lastitemcontent.append(child);
+        }
+
+        function expand() {
+            var expandbtn=$('#expandbtn');
+            expandbtn.remove();
+
+            var itemlist=$('.item:hidden');
+            itemlist.css("display","block");
+
+            var lastitemcontent=$('.item:visible:last .item-content');
+            console.log(lastitemcontent);
+            var child='<div id="packupbtn" onclick="packup()">\n' +
+                '                        收起全部\n' +
+                '                    </div>';
+            lastitemcontent.append(child);
+        }
+    </script>
+</div>
+                                     </div>                                        
+                                                  <p style="font-weight:900;text-align:center">积极防护，保护自己，戴口罩，勤洗手</p>     
+                                </div>
+                                </div>
+                             </div>
+                          </section>
+                    </div>
+             </div>
+         </div>
+    </div>
+ </body>
+</html>

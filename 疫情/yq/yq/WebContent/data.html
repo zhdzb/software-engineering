@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8"> 
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+function loadXMLDoc()
+{
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else{// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function loadXMLDoc(){
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+        document.getElementById("updateTime").innerHTML="最近更新时间："+xmlhttp.responseText.substring(851,864);
+        document.getElementById("currentConfirmedCount").innerHTML="现有确诊："+xmlhttp.responseText.substring(37,40);
+        document.getElementById("confirmedCount").innerHTML="累计确诊:"+xmlhttp.responseText.substring(84,89);
+        document.getElementById("suspectedCount").innerHTML="境外输入确诊:"+xmlhttp.responseText.substring(125,129);
+        document.getElementById("curedCount").innerHTML="治愈:"+xmlhttp.responseText.substring(161,166);
+        document.getElementById("deadCount").innerHTML="死亡:"+xmlhttp.responseText.substring(194,198);
+        document.getElementById("serious").innerHTML="无症状:"+xmlhttp.responseText.substring(227,230);
+        document.getElementById("gcurrentConfirmedCount").innerHTML="现有确诊："+xmlhttp.responseText.substring(291,298);
+        document.getElementById("gconfirmedCount").innerHTML="累计确诊:"+xmlhttp.responseText.substring(316,323);
+        document.getElementById("gcuredCount").innerHTML="治愈:"+xmlhttp.responseText.substring(337,344);
+        document.getElementById("gdeadCount").innerHTML="死亡:"+xmlhttp.responseText.substring(357,363); 
+       }
+   }
+    xmlhttp.open("GET","https://lab.isaaclin.cn/nCoV/api/overall",true);
+    xmlhttp.send("confirmedCount");
+}
+</script>
+</head>
+<body onload=loadXMLDoc()>
+<h2>实时疫情大数据</h2>
+<h3>国内疫情</h3>
+ <p id="updateTime">最近更新时间:</p>
+ <p id="currentConfirmedCount">现有确诊:</p>
+ <p id="confirmedCount">累计确诊:</p>
+ <p id="suspectedCount">境外输入确诊:</p>
+ <p id="curedCount">治愈:</p>
+ <p id="deadCount">死亡:</p>
+ <p id="serious">无症状:</p>
+ <h3>国外疫情</h3>
+ <p id="gcurrentConfirmedCount">现有确诊:</p>
+ <p id="gconfirmedCount">累计确诊:</p>
+ <p id="gcuredCount">治愈:</p>
+ <p id="gdeadCount">死亡:</p>
+</body>
+</html>
