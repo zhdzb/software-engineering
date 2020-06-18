@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  
+    let url = "https://lab.isaaclin.cn/nCoV/api/overall";
+    
+    $.getJSON(url,function(data,status){
+
+        let res = data["results"][0];
+
+        $("#confirmedCount").text(res["confirmedCount"]);
+        
+        $("#currentConfirmedCount").text(res["currentConfirmedCount"]);
+        
+        $("#suspectedCount").text(res["suspectedCount"]);
+
+        $("#curedCount").text(res["curedCount"]);
+   
+        $("#deadCount").text(res["deadCount"]);
+        
+        $("#seriousCount").text(res["seriousCount"]);
+       
+        $("#updateTime").text(timestampToTime(res["updateTime"],1)); 
+     
+    }).fail(function () {
+    	
+});
+    
+    function timestampToTime(timestamp,s,time = false) {
+
+        var date = new Date(timestamp * s);
+
+        Y = date.getFullYear() + '-';
+
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+
+        D = date.getDate() + ' ';
+
+        h = date.getHours();
+
+        m = ':' + (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes());
+
+        s = ':' + (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+
+        if(time)
+
+            return h+m;
+
+        else
+
+            return Y+M+D+h+m+s;
+    }
+
+</script>
+
+<title>国内疫情</title>
+</head>
+<body>
+                    <span>新型冠状病毒数据</span>
+                    <h3>国内疫情</h3>
+                <div>截至 <span id="updateTime"></span></div>
+    <span>现有确诊：<span id="currentConfirmedCount"></span></span>
+    <span>累计确诊：<span id="confirmedCount"></span></span>
+    <span>境外输入确诊：<span id="suspectedCount"></span></span>
+    <span>治愈：<span id="curedCount"></span></span>
+    <span>死亡：<span id="deadCount"></span></span>
+    <span>无症状：<span id="seriousCount"></span></span>
+
+    
+      <h3>国外疫情</h3>
+     <button onclick="myFunction()"></button>
+    <span>现有确诊：<span id="gcurrentConfirmedCount"></span></span>
+    <span>累计确诊：<span id="gconfirmedCount"></span></span>
+    <span>治愈：<span id="gcuredCount"></span></span>
+    <span>死亡：<span id="gdeadCount"></span></span>
+    <script src="myScript.js"></script>
+     
+</body>
+</html>
